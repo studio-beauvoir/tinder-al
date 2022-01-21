@@ -9,3 +9,4 @@ require_once './app/config/env.php';
 require_once './app/providers/db.php';
 
 // get view router etc
+echo APP_ROOT;

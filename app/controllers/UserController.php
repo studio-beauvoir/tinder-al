@@ -12,7 +12,11 @@ class UserController {
     public static function index() {
         // get all users
 
-        require_once APP_ROOT . '/views/product.php';
+        // requete des data
+
+
+        // affichage de la vue avec les data
+        require_once APP_ROOT . '/views/user/index.php';
     }
 
     public static function show($user_id) {
