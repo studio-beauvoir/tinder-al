@@ -1,7 +1,6 @@
 <?php
 
-echo "view index";
-print_r($users);
+echo "view index\n";
 foreach($users as $user) {
-    echo $user->nomEUser;
+    echo $user["nomEUser"]."\n";
 }

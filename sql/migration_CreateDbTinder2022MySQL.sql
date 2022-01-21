@@ -54,7 +54,7 @@ USE TINDER22;
 create table USER
 (
    idUser int(10) not null auto_increment,   -- PK
-   idGend int(3) not null,                   -- FK
+   idGenr int(3) not null,                   -- FK
    nomEUser varchar(50),
    prenomUser varchar(50),
    photo varchar(50),
@@ -73,25 +73,25 @@ create index USER_FK on USER
 
 -- --------------------------------------------------------------------
 --
--- Structure de la table `GENDER`
+-- Structure de la table `GENRE`
 --
 
 /*==============================================================*/
-/* Table : GENDER                                                */
+/* Table : GENRE                                                */
 /*==============================================================*/
-create table GENDER
+create table GENRE
 (
-   idGend int(3) not null auto_increment,   -- PK
-   libGend varchar(30),
-   primary key (idGend)
+   idGenr int(3) not null auto_increment,   -- PK
+   libGenr varchar(30),
+   primary key (idGenr)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
-/* Index : GENDER_FK                                             */
+/* Index : GENRE_FK                                             */
 /*==============================================================*/
-create index GENDER_FK on GENDER
+create index GENRE_FK on GENRE
 (
-   idGend
+   idGenr
 );
 
 -- --------------------------------------------------------------------
@@ -176,8 +176,8 @@ create index COMMENTS_FK on COMMENTS
 
 -- --------------------------------------------------------------------
 
-alter table USER add constraint FK_ASSOCIATION_0 foreign key (idGend)
-      references GENDER (idGend) on delete cascade on update cascade;
+alter table USER add constraint FK_ASSOCIATION_0 foreign key (idGenr)
+      references GENRE (idGenr) on delete cascade on update cascade;
 
 -- --------------------------------------------------------------------
 

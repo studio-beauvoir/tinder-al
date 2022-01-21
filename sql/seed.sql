@@ -1,5 +1,5 @@
 -- GENDERS TABLE
-INSERT INTO `gender` (`idGend`, `libGend`) VALUES
+INSERT INTO `genre` (`idGenr`, `libGenr`) VALUES
 (1,'Homme')
 ,(2,'Femme')
 ,(3,'Cis, cisgenre')
@@ -18,7 +18,7 @@ INSERT INTO `gender` (`idGend`, `libGend`) VALUES
 ,(16, 'Shemale')
 ;
 -- USER table
-INSERT INTO `user` (`idUser`, `idGend`, `nomEUser`, `prenomUser`, `photo`, `age`, `biographie`) VALUES
+INSERT INTO `user` (`idUser`, `idGenr`, `nomEUser`, `prenomUser`, `photo`, `age`, `biographie`) VALUES
 (1, 2,'Coquard', 'Leily', 'https://thispersondoesnotexist.com/', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(2, 2, 'Telusma', 'Mia', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(3, 1, 'Proust', 'Arthaud', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
