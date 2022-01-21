@@ -30,4 +30,18 @@ class UserController {
         // affichage de la vue avec les data
         require_once APP_ROOT . '/views/user/show.php';
     }
+
+
+    public static function matches($user_id) {
+        $viewData = [
+            'allUsers' => User::DBQueryAll('*')
+        ];
+
+        foreach($viewData['allUsers'] as $userToCheck) {
+            echo $userToCheck->checkMatch($user_id);
+        }
+
+        // affichage de la vue avec les data
+        // require_once APP_ROOT . '/views/user/show.php';
+    }
 }
