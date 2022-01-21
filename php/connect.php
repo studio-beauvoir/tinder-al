@@ -15,7 +15,7 @@
   }
 
   session_start();
-  $_SESSION['username'] = $_GET['userN']; //récupère l'entrée danns index.html
+  $_SESSION["NAME"] = $_GET['userN']; //récupère l'entrée danns index.html
 
   if(isset($_SESSION["NAME"])) {
     echo "Welcome " . $_SESSION["NAME"] . " !";
