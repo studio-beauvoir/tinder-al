@@ -22,13 +22,16 @@ class User extends Model {
         return Genre::DBQuery('*', 'WHERE idGenr = '.$this->idGenr);
     }
 
-    public function checkMatch($userB_Id) {
-        // context : userA a liké userB
-        // à ce moment une ligne a été ajouté dans la table like 
-        // si on cherche à vérif qu'il y ai un match, c'est que ce like est true
-        // on peut alors chercher si userB a liké en retour userA
-
-        // $firstLike = Likes::DBQuery('*', 'WHERE likeL1 ='.this->likeL1);
+    public function checkMatch($userB_id) {
+        $userA_id = $this->idUser;
+        // on regarde parmi les likes qui existent, si userA like userB
+        $queryAtoB = "WHERE idUserL1 = $userB_id AND idUserL2 = $userA_id AND likeL1 = 1";
+        $likeAtoB = Likes::DBQuery('*', $queryAtoB);
+        
+        // var_dump(empty($likeAtoB));
+        if($likeAtoB) {
+            var_dump($likeAtoB->idUserL1);
+        }
 
         // on regarde parmi les likes qui existent, si userB like userA
         // c-a-d WHERE idUserL1 = userB->idUser AND idUserL2 = userA->idUser
@@ -39,14 +42,16 @@ class User extends Model {
         // - idUserL2 : c'est la personne qui est liké
         // - likeL1 : est ce qu'on like?
 
-        $queryAtoB = 'WHERE idUserL1 ='.$userB_Id.' AND WHERE idUserL2 ='.$this->idUser. ' AND likeL1 = 1';
-        $queryBtoA = 'WHERE idUserL1 ='.$this->idUser.' AND WHERE idUserL2 ='.$userB_Id. ' AND likeL1 = 1';
-        $query = $queryAtoB . ' UNION ' . $queryBtoA;
-        
-        $reciproqueLike = Likes::DBQuery('*', $query);
-        // print_r($reciproqueLike);
+        $queryBtoA = "WHERE idUserL1 = $userA_id AND idUserL2 = $userB_id  AND likeL1 = 1";
 
-        return $reciproqueLike;
+
+        $likeBtoA = Likes::DBQuery('*', $queryBtoA);
+        
+
+        // var_dump(empty($likeBtoA));
+        // print_r($likeBtoA->data);
+
+        // return $reciproqueLike;
         // if($reciproqueLike)
         // ...
     }

@@ -46,12 +46,16 @@ class Model {
         $query->closeCursor();        
     }
 
-    public static function getQueryResult($columns, $query) {
-        global $db;
-        
-        $fullQuery = 'SELECT '.$columns.' FROM '.static::$table.' '.$query.';';
 
-        return $db->query($fullQuery);
+
+    public static function getCustomQueryResult($query) {
+        global $db;
+        return $db->query($query);
+    }
+
+    public static function getQueryResult($columns, $query) {
+        $fullQuery = 'SELECT '.$columns.' FROM '.static::$table.' '.$query.';';
+        return static::getCustomQueryResult($fullQuery);
     }
     
     public static function DBQueryAll($columns, $query='') {
@@ -74,7 +78,26 @@ class Model {
     }
 
 
+
+    public static function DBCustomQueryAll($query) {
+        $result = static::getCustomQueryResult($query);
     
+        // on recup le resultat
+        $queryResult = $result->fetchAll();
+
+        return self::instancializeResults($queryResult);
+    }
+
+    public static function DBCustomQuery($query) {
+        $result = static::getCustomQueryResult($query);
+    
+        // on recup le resultat
+        $queryResult = $result->fetch();
+
+        return self::instancializeResult($queryResult);
+    }
+
+   
     // instantialise les classes DES RESULTATS
     public static function instancializeResults($queryResults) {
         $models = [];
