@@ -2,8 +2,11 @@
 
 require_once APP_ROOT.'/controllers/UserController.php';
 
-$router->get('/', function(){ echo "Bienvenue sur ma homepage !"; }); 
+$router->get('/', fn()=>ProfileController::show() ); 
 
 
-$router->get('/users', function(){ UserController::index(); }); 
-$router->get('/user/:id', function($id){ UserController::show($id); }); 
+
+
+$router->get('/users', fn()=>UserController::index());
+$router->get('/user/:id', fn($id) =>UserController::show($id));
+$router->get('/user/:id/matches', fn($id) =>UserController::matches($id));
