@@ -19,7 +19,7 @@ INSERT INTO `genre` (`idGenr`, `libGenr`) VALUES
 ;
 -- USER table
 INSERT INTO `user` (`idUser`, `idGenr`, `nomEUser`, `prenomUser`, `photo`, `age`, `biographie`) VALUES
-(1, 2,'Coquard', 'Leily', 'https://thispersondoesnotexist.com/', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+(1, 2,'Coquard', 'Leïly', 'https://thispersondoesnotexist.com/', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(2, 2, 'Telusma', 'Mia', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(3, 1, 'Proust', 'Arthaud', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(4, 2, 'Bornerie', 'Martine', 'https://thispersondoesnotexist.com/', 45,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')

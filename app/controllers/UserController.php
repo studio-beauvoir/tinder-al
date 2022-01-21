@@ -1,5 +1,7 @@
 <?php
 
+require_once APP_ROOT .'/models/User.php';
+
 class UserController {
     // CRUD
     
@@ -10,23 +12,22 @@ class UserController {
     // delete : delete
     
     public static function index() {
-        global $db;
         // get all users
 
-        // requete des data
-        $query = 'SELECT * FROM user;'; 
-
-        // on passe le query à la bdd
-        $result = $db->query($query);
-
-        // on recup le resultat
-        $users = $result->fetchAll();
+        $viewData = [
+            'users' => User::DBQueryAll('*')
+        ];
 
         // affichage de la vue avec les data
         require_once APP_ROOT . '/views/user/index.php';
     }
 
     public static function show($user_id) {
-        // get user with this id
+        $viewData = [
+            'user' => User::DBQuery('*', 'WHERE idUser = '.$user_id)
+        ];
+
+        // affichage de la vue avec les data
+        require_once APP_ROOT . '/views/user/show.php';
     }
 }
