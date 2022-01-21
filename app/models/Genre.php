@@ -3,7 +3,7 @@
 
 class Genre extends Model {
 
-    static $table = "genre";
+    public $table = "genre";
 
     public $columns = [
         'idGenr',

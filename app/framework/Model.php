@@ -1,5 +1,6 @@
 <?php
 
+require_once APP_ROOT . '/framework/Query.php';
 
 class Model {
 
@@ -13,8 +14,9 @@ class Model {
     // data récupérée depuis la bdd
     private $data;
 
-    function __construct($data) {
-
+    function __construct() {}
+    
+    function fillData($data) {
         $this->data = $data;
     }
 
@@ -46,8 +48,12 @@ class Model {
         $query->closeCursor();        
     }
 
+    public static function DBQuery() {
+        return new Query(new static());
+    }
 
 
+    /*
     public static function getCustomQueryResult($query) {
         global $db;
         return $db->query($query);
@@ -73,6 +79,8 @@ class Model {
     
         // on recup le resultat
         $queryResult = $result->fetch();
+        echo 'aaaa';
+        var_dump($queryResult);
 
         return self::instancializeResult($queryResult);
     }
@@ -112,5 +120,6 @@ class Model {
     public static function instancializeResult($queryResult) {
         return new static($queryResult);
     }
+    */
 
 }

@@ -2,7 +2,7 @@
 
 class Matchs extends Model {
 
-    static $table="matchs";
+    public $table="matchs";
 
     public $columns = [
         'idUserM1',

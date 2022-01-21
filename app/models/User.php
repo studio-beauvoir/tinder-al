@@ -5,7 +5,7 @@ require_once APP_ROOT . '/models/Likes.php';
 
 class User extends Model {
 
-    static $table = "user";
+    public $table = "user";
 
     public $columns = [
         'idUser',
@@ -19,19 +19,20 @@ class User extends Model {
 
 
     public function getGenreModel() {
-        return Genre::DBQuery('*', 'WHERE idGenr = '.$this->idGenr);
+        // return Genre::DBQuery('*', 'WHERE idGenr = '.$this->idGenr);
+        return Genre::DBQuery()->where('idGenr = '.$this->idGenr)->first();
     }
 
     public function checkMatch($userB_id) {
         $userA_id = $this->idUser;
         // on regarde parmi les likes qui existent, si userA like userB
         $queryAtoB = "WHERE idUserL1 = $userB_id AND idUserL2 = $userA_id AND likeL1 = 1";
-        $likeAtoB = Likes::DBQuery('*', $queryAtoB);
+        $likeAtoB = Likes::DBQuery()->where("idUserL1 = $userB_id")->andWhere("idUserL2 = $userA_id")->andWhere("likeL1 = 1")->exists();
         
         // var_dump(empty($likeAtoB));
-        if($likeAtoB) {
-            var_dump($likeAtoB->idUserL1);
-        }
+        // if($likeAtoB) {
+            var_dump($likeAtoB);
+        // }
 
         // on regarde parmi les likes qui existent, si userB like userA
         // c-a-d WHERE idUserL1 = userB->idUser AND idUserL2 = userA->idUser

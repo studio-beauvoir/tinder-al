@@ -5,9 +5,7 @@ require_once APP_ROOT . '/framework/Route.php';
 // localhost:80/user/29
 // -> route "/user/{user_id}" -> UserController('show', [user_id=>29])
 
-class RouterException extends \Exception {
 
-}
 
 class Router {
 

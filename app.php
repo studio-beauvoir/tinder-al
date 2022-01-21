@@ -5,7 +5,9 @@ require_once __DIR__.'/app/config/config.php';
 require_once __DIR__.'/app/config/env.php';
 
 
+
 // pseudo-framework;
+require_once __DIR__.'/app/framework/Exceptions.php';
 require_once __DIR__.'/app/framework/Model.php';
 require_once __DIR__.'/app/framework/Router.php';
 

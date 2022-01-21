@@ -3,7 +3,7 @@
 
 class Likes extends Model {
 
-    static $table="likes";
+    public $table="likes";
 
     public $columns = [
         'idUserL1',

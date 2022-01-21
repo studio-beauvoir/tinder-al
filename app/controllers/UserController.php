@@ -15,7 +15,7 @@ class UserController {
         // get all users
 
         $viewData = [
-            'users' => User::DBQueryAll('*')
+            'users' => User::DBQuery()->all()
         ];
 
         // affichage de la vue avec les data
@@ -24,7 +24,7 @@ class UserController {
 
     public static function show($user_id) {
         $viewData = [
-            'user' => User::DBQuery('*', 'WHERE idUser = '.$user_id)
+            'user' => User::DBQuery()->where('idUser = '.$user_id)->first()
         ];
 
         // affichage de la vue avec les data
@@ -34,7 +34,7 @@ class UserController {
 
     public static function matches($user_id) {
         $viewData = [
-            'allUsers' => User::DBQueryAll('*')
+            'allUsers' => User::DBQuery()->all()
         ];
 
         foreach($viewData['allUsers'] as $userToCheck) {
