@@ -31,7 +31,7 @@ function connect_user($email) {
     $result->execute([$email]);
     $user = $result->fetch();
 
-    if($user) {
+    if($user) { //cookie
         setcookie('user', $user['email']);
         header('Location: home.php'); //dès qu'on créé le cookie, on part sur le home.php
     }
