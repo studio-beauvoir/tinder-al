@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'../app/provider/db.php'; //le chemin pour connecter à db.php
+require_once __DIR__.'../app/providers/db.php'; //le chemin pour connecter à db.php
 
 //copier back.php de l'ancien projet
 
@@ -8,7 +8,7 @@ function insert_user($email, $name) {
     global $db;
 
     try {
-        $d²b->beginTransaction();
+        $db->beginTransaction();
 
         $query = 'INSERT INTO liste (email, name) VALUES (?,?);'; //requete
         $request = $db->prepare($query); //prepare
@@ -28,7 +28,7 @@ function connect_user($email) {
 
     $query = 'SELECT * FROM users WHERE email = ?;';
     $result = $db->prepare($query);
-    $result->execute([email]);
+    $result->execute([$email]);
     $user = $result->fetch();
 
     if($user) {
@@ -44,7 +44,7 @@ function get_user_name($email) {
 
     $query = 'SELECT * FROM users WHERE email = ?;';
     $result = $db->prepare($query);
-    $result->execute([email]);
+    $result->execute([$email]);
     $user = $result->fetch();
 
     return $user['name'];

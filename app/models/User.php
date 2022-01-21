@@ -32,7 +32,7 @@ class User extends Model {
 
         // on regarde parmi les likes qui existent, si userB like userA
         // c-a-d WHERE idUserL1 = userB->idUser AND idUserL2 = userA->idUser
-        $query1 = 'WHERE likeL1 ='.$this->likeL1. 'UNION' . 'WHERE likeL1 ='.$userBId->likeL1;
+        $query = 'WHERE likeL1 ='.$this->likeL1. 'UNION' . 'WHERE likeL1 ='.$userBId->likeL1;
         $reciproqueLike = Likes::DBQuery('*', $query);
         print_r($reciproqueLike);
 
