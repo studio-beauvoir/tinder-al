@@ -17,43 +17,44 @@ class User extends Model {
         'biographie'
     ];
 
+    public function getFullName() 
+    {
+        return $this->prenomUser . " " . $this->nomEUser;
+    }
 
-    public function getGenreModel() {
+    public function getGenreModel() : Genre
+    {
         // return Genre::DBQuery('*', 'WHERE idGenr = '.$this->idGenr);
         return Genre::DBQuery()->where('idGenr = '.$this->idGenr)->first();
     }
 
-    public function checkMatch($userB_id) {
+    public function checkMatch($userB_id) : bool
+    {
         $userA_id = $this->idUser;
-        // on regarde parmi les likes qui existent, si userA like userB
-        $queryAtoB = "WHERE idUserL1 = $userB_id AND idUserL2 = $userA_id AND likeL1 = 1";
-        $likeAtoB = Likes::DBQuery()->where("idUserL1 = $userB_id")->andWhere("idUserL2 = $userA_id")->andWhere("likeL1 = 1")->exists();
-        
-        // var_dump(empty($likeAtoB));
-        // if($likeAtoB) {
-            var_dump($likeAtoB);
-        // }
 
         // on regarde parmi les likes qui existent, si userB like userA
-        // c-a-d WHERE idUserL1 = userB->idUser AND idUserL2 = userA->idUser
-
+        // c-a-d WHERE idUserL1 = userB->idUser AND idUserL2 = userA->idUser AND likeL1 = 1
+        
         // ligne de la table like
         // on a 3 colonnes :
         // - idUserL1 : c'est la personne qui a liké
         // - idUserL2 : c'est la personne qui est liké
-        // - likeL1 : est ce qu'on like?
+        // - likeL1 : est ce qu'on like(1/true) ou on dislike(0/false)?
 
-        $queryBtoA = "WHERE idUserL1 = $userA_id AND idUserL2 = $userB_id  AND likeL1 = 1";
+        // on regarde parmi les likes qui existent, si userA like userB
+        $likeAtoB = Likes::DBQuery()->where("idUserL1 = $userA_id")->andWhere("idUserL2 = $userB_id")->andWhere("likeL1 = 1");
 
-
-        $likeBtoA = Likes::DBQuery('*', $queryBtoA);
         
+        if($likeAtoB->exists()) {
 
-        // var_dump(empty($likeBtoA));
-        // print_r($likeBtoA->data);
+            // réciproque
+            // puis on regarde si userA figure dans les likes de userB
+            $likeBtoA = Likes::DBQuery()->where("idUserL1 = $userB_id")->andWhere("idUserL2 = $userA_id")->andWhere("likeL1 = 1");
 
-        // return $reciproqueLike;
-        // if($reciproqueLike)
-        // ...
+            if($likeBtoA->exists()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

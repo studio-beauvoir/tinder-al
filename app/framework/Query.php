@@ -107,7 +107,7 @@ class Query {
         $this->saveQueryToQueries();
         global $db;
 
-        echo $this->getBuildedQuery();
+        // echo $this->getBuildedQuery();
         // die();
         $result = $db->query($this->getBuildedQuery());
 

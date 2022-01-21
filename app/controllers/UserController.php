@@ -34,11 +34,14 @@ class UserController {
 
     public static function matches($user_id) {
         $viewData = [
+            'currentUser' => User::DBQuery()->where("idUser = $user_id")->first(),
             'allUsers' => User::DBQuery()->all()
         ];
 
         foreach($viewData['allUsers'] as $userToCheck) {
-            echo $userToCheck->checkMatch($user_id);
+            if($userToCheck->checkMatch($user_id)) {
+                echo $userToCheck->getFullName();
+            }
         }
 
         // affichage de la vue avec les data
