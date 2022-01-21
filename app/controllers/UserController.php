@@ -11,6 +11,8 @@ class UserController {
     
     public static function index() {
         // get all users
+
+        require_once APP_ROOT . '/views/product.php';
     }
 
     public static function show($user_id) {
