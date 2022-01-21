@@ -1,0 +1,1 @@
+<h1>Salut <?= $user->name ?></h1>
