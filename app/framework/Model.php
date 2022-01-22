@@ -23,103 +23,72 @@ class Model {
 
     // permet de récupérer les données via une flèche
     function __get($name){
+        if($name==="table") {
+            return static::$table;
+        }
         if(in_array($name, $this->columns)) {
             return $this->data[$name];
         }
     }
 
 
-    public static function DBExec($query, $params) {
+    public function getPrimaryKeyValue() {
+        return $this->data[$this->primaryKey];
+    }
+
+    public static function DBExec($request, $params) {
         global $db;
     
-        $request = '';
-        
-        // query à bind;
-        $query = $db->prepare($request);
-    
-        // on bind les parametres un à un
-        // i va de 1 à longueur de(params)
-        // chaque paramètre doit avoir la forme [valeur, type]
-        for($i=1; $i<=count($params); $i++) {
-            $query->bindValue($i, $params[$i][0], $params[$i][1]);
+        $result = $db->prepare($request);
+        foreach($params as $key => $value) {
+            $result->bindValue(":var".$key, $value);
         }
-    
-        $query->execute();
-        $query->closeCursor();        
+        var_dump($result);
+        $result->execute();       
+    }
+
+
+    public static function DBCreate($params) {
+        $request = static::DBQuery()->table(static::$table)->action('INSERT');
+
+        $request->values($params);
+
+        self::DBExec(
+            $request->saveQueryToQueries()->getBuildedQuery(),
+            $params
+        );
     }
 
     public static function DBQuery() {
         return new Query(new static());
     }
 
+    public function DBSelfQuery() {
+        // permet de récup le 'UPDATE * FROM user WHERE idUser = 3 ;'
+        // par exemple, depuis l'utilisateur déjà connecté (évite de nous faire faire le query)
+        $query = new Query($this);
+        return $query->buildFromModel($this);
+    }
 
-    /*
-    public static function getCustomQueryResult($query) {
+    public function DBExecOnSelf() {
         global $db;
-        return $db->query($query);
+
+        $request = $this->DBSelfQuery()->action('UPDATE');
+
+        return $request;
     }
 
-    public static function getQueryResult($columns, $query) {
-        $fullQuery = 'SELECT '.$columns.' FROM '.static::$table.' '.$query.';';
-        return static::getCustomQueryResult($fullQuery);
-    }
-    
-    public static function DBQueryAll($columns, $query='') {
-        // on passe le query à la bdd
-        $result = self::getQueryResult($columns, $query);
-    
-        // on recup les resultat
-        $queryResults = $result->fetchAll();
-    
-        return self::instancializeResults($queryResults);
-    }
-    
-    public static function DBQuery($columns, $query='') {
-        $result = self::getQueryResult($columns, $query);
-    
-        // on recup le resultat
-        $queryResult = $result->fetch();
-        echo 'aaaa';
-        var_dump($queryResult);
+    public function DBUpdateOnSelf($params) {
+        $request = $this->DBExecOnSelf();
 
-        return self::instancializeResult($queryResult);
-    }
-
-
-
-    public static function DBCustomQueryAll($query) {
-        $result = static::getCustomQueryResult($query);
-    
-        // on recup le resultat
-        $queryResult = $result->fetchAll();
-
-        return self::instancializeResults($queryResult);
-    }
-
-    public static function DBCustomQuery($query) {
-        $result = static::getCustomQueryResult($query);
-    
-        // on recup le resultat
-        $queryResult = $result->fetch();
-
-        return self::instancializeResult($queryResult);
-    }
-
-   
-    // instantialise les classes DES RESULTATS
-    public static function instancializeResults($queryResults) {
-        $models = [];
-        foreach($queryResults as $queryResult) {
-            array_push($models, self::instancializeResult($queryResult));
+        foreach($params as $key => $value) {
+            $request->set($key." = :var".$key);
         }
 
-        return $models;
+        self::DBExec(
+            $request->saveQueryToQueries()->getBuildedQuery(),
+            $params
+        );
     }
-
-    // instantialise les classes D'UN RESULTAT
-    public static function instancializeResult($queryResult) {
-        return new static($queryResult);
-    }
-    */
 
 }

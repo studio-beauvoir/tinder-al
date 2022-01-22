@@ -1,8 +1,9 @@
 <?php
 
 require_once APP_ROOT .'/models/User.php';
+require_once APP_ROOT .'/framework/Controller.php';
 
-class AuthController {
+class AuthController extends Controller {
     // CRUD
     
     // get all : index
@@ -22,7 +23,7 @@ class AuthController {
         $user = $result->fetch();
 
         if($user) { //cookie
-            setcookie('user', $user['nomEUser']);
+            setcookie('username', $user['nomEUser']);
             header('Location: /home'); //dès qu'on créé le cookie, on part sur le home.php
         }
         else {
@@ -42,6 +43,6 @@ class AuthController {
     }
 
     public static function showLogin() { //affichage formulaire
-        require_once APP_ROOT . '/views/auth/login.php';
+        self::view('auth/login');
     }
 }

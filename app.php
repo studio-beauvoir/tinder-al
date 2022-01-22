@@ -13,7 +13,8 @@ require_once __DIR__.'/app/framework/Router.php';
 
 
 // connect to db
-require_once __DIR__.'/app/providers/db.php';
+require_once __DIR__.'/app/providers/dbProvider.php';
+require_once __DIR__.'/app/providers/sessionProvider.php';
 
 // helpers
 require_once __DIR__.'/app/helpers.php';

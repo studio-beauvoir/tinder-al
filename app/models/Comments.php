@@ -3,7 +3,7 @@
 
 class Comment extends Model {
 
-    public $table="comments";
+    public static $table="comments";
     
     public $columns = [
         'idUserC1',

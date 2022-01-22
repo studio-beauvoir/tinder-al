@@ -1,3 +1,4 @@
+# Credit https://grafikart.fr/tutoriels/router-628
 <IfModule mod_rewrite.c>
     RewriteEngine on
 

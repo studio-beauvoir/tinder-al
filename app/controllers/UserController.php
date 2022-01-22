@@ -1,8 +1,9 @@
 <?php
 
 require_once APP_ROOT .'/models/User.php';
+require_once APP_ROOT .'/framework/Controller.php';
 
-class UserController {
+class UserController extends Controller {
     // CRUD
     
     // get all : index
@@ -14,36 +15,25 @@ class UserController {
     public static function index() {
         // get all users
 
-        $viewData = [
+        self::view('user/index', [
             'users' => User::DBQuery()->all()
-        ];
-
-        // affichage de la vue avec les data
-        require_once APP_ROOT . '/views/user/index.php';
+        ]);
     }
 
     public static function show($user_id) {
-        $viewData = [
-            'user' => User::DBQuery()->where('idUser = '.$user_id)->first()
-        ];
-
         // affichage de la vue avec les data
-        require_once APP_ROOT . '/views/user/show.php';
+        self::view('user/show', [
+            'user' => User::DBQuery()->where('idUser = '.$user_id)->first()
+        ]);
     }
 
 
     public static function matches($user_id) {
-        $viewData = [
-            'currentUser' => User::DBQuery()->where("idUser = $user_id")->first(),
-            'allUsers' => User::DBQuery()->all()
-        ];
-
-        foreach($viewData['allUsers'] as $userToCheck) {
-            if($userToCheck->checkMatch($user_id)) {
-                echo $userToCheck->getFullName();
-            }
-        }
-
+        self::view('user/matches', [
+            'allUsers' => User::DBQuery()->all(),
+            'user_id' => $user_id
+        ]);
+        require_once APP_ROOT . '/views/user/matches.php';
         // affichage de la vue avec les data
         // require_once APP_ROOT . '/views/user/show.php';
     }

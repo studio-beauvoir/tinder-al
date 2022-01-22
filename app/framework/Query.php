@@ -15,6 +15,8 @@ class Query {
         "action"=>"SELECT",
         "columns"=>"*",
         "table"=>null,
+        "set"=>false,
+        "values"=>false,
         "condition"=>["1"],
     ];
     
@@ -22,6 +24,7 @@ class Query {
     private $records = [];
 
     private $instancialized = false;
+    private $fetched = false;
 
     function __construct($model, $fetchAll=false) {
         $this->model = $model;
@@ -30,16 +33,61 @@ class Query {
         $this->baseQueryData["table"] = $model->table;
 
         $this->emptyQuery();
+
+        return $this;
     }
 
     function saveQueryToQueries() {
         array_push($this->queries, $this->currentQuery);
         $this->emptyQuery();
+
+        return $this;
     }
     function emptyQuery() {
         $this->currentQuery = $this->baseQueryData;
+
+        return $this;
     }
 
+
+    //methods for the query
+    public function action($action)
+    {
+        // SELECT, UPDATE, DELETE ...
+        $this->currentQuery["action"] = $action;
+        return $this;
+    }
+
+    public function buildFromModel() 
+    {
+        // create condition WHERE from table primary key
+        $cond = $this->model->primaryKey . " = " . $this->model->getPrimaryKeyValue();
+        $this->where($cond);
+        return $this;
+    }
+
+    
+    public function values($values) {
+        if($this->currentQuery["values"] === false) {
+            $this->currentQuery["values"] = [];
+        }
+
+        foreach($values as $col => $val) {
+            $this->currentQuery["values"][$col]=$val;
+        }
+        return $this;
+    }
+
+    public function set($set) {
+        if($this->currentQuery["set"] === false) {
+            $this->currentQuery["set"] = [];
+        }
+        array_push(
+            $this->currentQuery["set"],
+            $set
+        );
+        return $this;
+    }
 
     //methods for the query
     public function table($tableName) {
@@ -103,10 +151,17 @@ class Query {
 
 
 
+    
+
     public function fetch() {
+        if($this->fetched) return;
+
+        $this->fetched = true;
+
         $this->saveQueryToQueries();
         global $db;
 
+        // var_dump($this->queries);
         // echo $this->getBuildedQuery();
         // die();
         $result = $db->query($this->getBuildedQuery());
@@ -133,12 +188,57 @@ class Query {
 
 
 
-    // query building
     public function getPartialOperation($qd) {
+        // UNION etc.
         $txt = "";
         if(!isset($qd["operation"]) || !$qd["operation"]) return $txt;
         $txt.= $qd["operation"];
         $txt.= " ";
+        return $txt;
+    }
+
+    public function getPartialSet($qd) {
+        $txt = "";
+
+        if(!isset($qd["set"]) || !$qd["set"] || count($qd["set"]) < 0) return $txt;
+        
+        $txt.=" SET";
+
+        foreach($qd["set"] as $index => $cond) {
+            $txt.=" ";
+            $txt.=$cond;
+            if($index !== array_key_last($qd["set"])) {
+                $txt.=",";
+            }
+        }
+
+        return $txt;
+    }
+
+    public function getPartialValues($qd) {
+        $txt = "";
+
+        if(!isset($qd["values"]) || !$qd["values"] || count($qd["values"]) < 0) return $txt;
+        
+        $txt.=" ";
+
+        $cols = "(";
+        $values = "(";
+        foreach($qd["values"] as $col => $val) {
+            $cols .= $col;
+            $values .= $val;
+            if($col !== array_key_last($qd["values"])) {
+                $cols .= ", ";
+                $values .= ", ";
+            }
+        }
+        $cols .= ")";
+        $values .= ")";
+
+        $txt.=$cols;
+        $txt.=" VALUES ";
+        $txt.=$values;
+
         return $txt;
     }
 
@@ -155,8 +255,20 @@ class Query {
 
         return $txt;
     }
+
+    public function getBuildedPartialAction($qd) {
+        switch($qd['action']) {
+            case "UPDATE":
+                return "UPDATE ".$qd["table"] . $this->getPartialSet($qd) . $this->getPartialCondition($qd);
+            case "SELECT":
+                return "SELECT ".$qd["columns"] . " FROM " . $qd["table"] . $this->getPartialCondition($qd);
+            case "INSERT":
+                return "INSERT INTO ".$qd["table"].$this->getPartialValues($qd);
+        }
+    }
+
     public function getBuildedPartialQuery($qd) {
-        return $this->getPartialOperation($qd) . $qd["action"] . " " . $qd["columns"] . " FROM " . $qd["table"] . $this->getPartialCondition($qd) . " ";
+        return $this->getPartialOperation($qd) . $this->getBuildedPartialAction($qd) . " ";
     }
 
     public function getBuildedQuery() {
@@ -165,6 +277,7 @@ class Query {
             $query.= $this->getBuildedPartialQuery($q);
         }
         $query.=";";
+        // var_dump($query);
 
         return $query;
     }

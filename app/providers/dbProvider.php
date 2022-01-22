@@ -15,19 +15,5 @@
         die('Echec connexion DB : ' . $err->getMessage());
     }
 
-    
-    
-    // session_start();
-    // $_SESSION["NAME"] = $_GET['userN']; //récupère l'entrée danns index.html
-
-    // if(isset($_SESSION["NAME"])) {
-    //     echo "Welcome " . $_SESSION["NAME"] . " !";
-    // }
-    // else {
-    //     echo "Wrong username";
-    // }
-
-    // session_destroy(); //dès qu'on start, écrire destroy
-
 ?>
 

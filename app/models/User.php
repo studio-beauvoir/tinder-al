@@ -5,7 +5,10 @@ require_once APP_ROOT . '/models/Likes.php';
 
 class User extends Model {
 
-    public $table = "user";
+    // public $table = "user";
+    public static $table = "user";
+
+    public $primaryKey = 'idUser';
 
     public $columns = [
         'idUser',
@@ -17,9 +20,18 @@ class User extends Model {
         'biographie'
     ];
 
-    public function getFullName() 
+    public function getStaticTable() {
+        return static::$tableT;
+    }
+
+    public function getFullName() : string
     {
         return $this->prenomUser . " " . $this->nomEUser;
+    }
+
+    public function getLikes() 
+    {
+        return Likes::DBQuery()->where("idUserL1 = ".$this->idUser)->all();
     }
 
     public function getGenreModel() : Genre

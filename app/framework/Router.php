@@ -2,11 +2,12 @@
 
 require_once APP_ROOT . '/framework/Route.php';
 
+// but du router :
 // localhost:80/user/29
 // -> route "/user/{user_id}" -> UserController('show', [user_id=>29])
 
 
-
+// Credit https://grafikart.fr/tutoriels/router-628
 class Router {
 
     private $url;
