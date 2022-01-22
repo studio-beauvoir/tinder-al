@@ -13,17 +13,11 @@
         <img height=300 width=200 src="<?=$user->photo?>?random=<?=$i?>">
         <h3><?= $user->getFullName();?></h3>
 
-        <div style="display:flex; flex-flow:row">
-            <!-- requête post pour liker -->
-            <form action="/like/<?=$user->idUser?>" method="post">
-                <input type="submit" value="J'aime">
+        <!-- <div style="display:flex; flex-flow:row">
+            <form action="/comment/<?=$user->idUser?>" method="post">
+                <input type="submit" value="Ajouter un commentaire">
             </form>
-
-            <!-- requête post pour disliker -->
-            <form action="/dislike/<?=$user->idUser?>" method="post">
-                <input type="submit" value="J'aime po">
-            </form>
-        </div>  
+        </div>   -->
     </div>
     <?php endforeach ?>
 </div>

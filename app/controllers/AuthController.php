@@ -41,6 +41,8 @@ class AuthController extends Controller {
     }
 
     public static function showLogin() { //affichage formulaire
-        self::view('auth/login');
+        self::view('auth/login', [
+            'users' => User::DBQuery()->all()
+        ]);
     }
 }

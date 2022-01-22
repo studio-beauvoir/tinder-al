@@ -2,6 +2,7 @@
 
 require_once APP_ROOT .'/models/User.php';
 require_once APP_ROOT .'/models/Likes.php';
+require_once APP_ROOT .'/models/Matchs.php';
 require_once APP_ROOT .'/framework/Controller.php';
 
 class MatchController extends Controller {
@@ -14,11 +15,29 @@ class MatchController extends Controller {
     // delete : delete
 
     public static function index() {
+
         self::view('matches/index', [
-            'matchedUsers' => User::DBQuery()->all(),
-            'user_id' => $GLOBALS["user"]->idUser
+            'matchedUsers' => $GLOBALS["user"]->getMatchedUsers()
         ]);
-        // affichage de la vue avec les data
-        // require_once APP_ROOT . '/views/user/show.php';
     }
+
+    public static function create($idUserA, $idUserB) {
+
+        // vérification de si le match existe déjà
+        $matchRequest = Matchs::DBQuery()
+            ->where("idUserM1 = ".$idUserA)
+            ->andWhere("idUserM2 = ".$idUserB);
+    
+        if(!$matchRequest->exists()) {
+            // si le match n'existe pas
+            // on insert les données dans la bdd
+            Matchs::DBCreate([
+                'idUserM1'=>$idUserA,
+                'idUserM2'=>$idUserB
+            ]);
+        }
+
+    }
+
+    
 }

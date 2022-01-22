@@ -2,6 +2,8 @@
     require_once APP_ROOT .'/models/Likes.php';
     require_once APP_ROOT .'/models/User.php';
     require_once APP_ROOT .'/framework/Controller.php';
+    
+    require_once APP_ROOT .'/controllers/MatchController.php';
 
     class LikeController extends Controller {
  
@@ -54,12 +56,12 @@
         // c'est ici qu'il faut modifier
         // j'ai fait ça hier 
 
-        public static function like($userId) {
+        public static function like($userToLike) {
 
             // vérification de si le like existe déjà
             $likeRequest = Likes::DBQuery()
                 ->where("idUserL1 = ".$GLOBALS["user"]->idUser)
-                ->andWhere("idUserL2 = ".$userId);
+                ->andWhere("idUserL2 = ".$userToLike);
             
             if($likeRequest->exists()) {
                 // on mets à jour 
@@ -73,9 +75,15 @@
                 // on insert les données dans la bdd
                 Likes::DBCreate([
                     'idUserL1'=>$GLOBALS["user"]->idUser,
-                    'idUserL2'=>$userId,
+                    'idUserL2'=>$userToLike,
                     'likeL1'=>1
                 ]);
+            }
+
+            if($GLOBALS["user"]->checkMatch($userToLike)) {
+                // y'a match
+
+                MatchController::create($GLOBALS["user"]->idUser, $userToLike);
             }
 
             header('Location: /home'); 
