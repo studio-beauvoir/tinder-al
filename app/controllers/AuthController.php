@@ -29,17 +29,15 @@ class AuthController extends Controller {
         else {
             header('Location: /login');
         }
+    }
 
-        print_r($user);
+    public static function attemptLogout() {
 
-    //     if(true) {
-    //         echo "connexion";
-    //         header('Location: /home');
-    //     }
-    //     else {
-    //         echo "mauvais identifiant";
-    //         header('Location: /login');
-    //     }
+        // supression du cookie
+        setcookie('username', '', time()-3600);
+        
+        //dès qu'on retire le cookie on revient sur login
+        header('Location: /login'); 
     }
 
     public static function showLogin() { //affichage formulaire

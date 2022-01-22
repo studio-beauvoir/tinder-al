@@ -61,8 +61,12 @@ class Query {
     public function buildFromModel() 
     {
         // create condition WHERE from table primary key
-        $cond = $this->model->primaryKey . " = " . $this->model->getPrimaryKeyValue();
+        $cond = $this->model->primaryKey[0] . " = " . $this->model->getPrimaryKeyValue(0);
         $this->where($cond);
+        for($i=1; $i< count($this->model->primaryKey); $i++) {
+            $cond = $this->model->primaryKey[$i] . " = " . $this->model->getPrimaryKeyValue($i);
+            $this->andWhere($cond);
+        }
         return $this;
     }
 

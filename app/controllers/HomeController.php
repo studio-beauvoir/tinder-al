@@ -28,7 +28,7 @@ class HomeController extends Controller {
         // pour cela il suffit 
 
         // utilisateurs likés ou dislikés
-        $userLikes = $GLOBALS["user"]->getLikes();
+        $userLikes = $GLOBALS["user"]->getLikesOrDislikes();
 
         $usersToLike = [];
         // naviquer dans les users et vérifier s'il a été liké ou disliké

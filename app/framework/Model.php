@@ -32,8 +32,8 @@ class Model {
     }
 
 
-    public function getPrimaryKeyValue() {
-        return $this->data[$this->primaryKey];
+    public function getPrimaryKeyValue($index=0) {
+        return $this->data[$this->primaryKey[$index]];
     }
 
     public static function DBExec($request, $params) {

@@ -28,13 +28,5 @@ class UserController extends Controller {
     }
 
 
-    public static function matches($user_id) {
-        self::view('user/matches', [
-            'allUsers' => User::DBQuery()->all(),
-            'user_id' => $user_id
-        ]);
-        require_once APP_ROOT . '/views/user/matches.php';
-        // affichage de la vue avec les data
-        // require_once APP_ROOT . '/views/user/show.php';
-    }
+    
 }

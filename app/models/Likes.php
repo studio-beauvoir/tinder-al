@@ -6,6 +6,8 @@ class Likes extends Model {
 
     public static $table="likes";
 
+    public $primaryKey = ['idUserL1', 'idUserL2'];
+
     public $columns = [
         'idUserL1',
         'idUserL2',

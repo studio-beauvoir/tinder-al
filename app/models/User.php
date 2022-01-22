@@ -8,7 +8,7 @@ class User extends Model {
     // public $table = "user";
     public static $table = "user";
 
-    public $primaryKey = 'idUser';
+    public $primaryKey = ['idUser'];
 
     public $columns = [
         'idUser',
@@ -30,6 +30,16 @@ class User extends Model {
     }
 
     public function getLikes() 
+    {
+        return Likes::DBQuery()->where("idUserL1 = ".$this->idUser)->andWhere("likeL1 = 1")->all();
+    }
+
+    public function getDislikes() 
+    {
+        return Likes::DBQuery()->where("idUserL1 = ".$this->idUser)->andWhere("likeL1 = 0")->all();
+    }
+
+    public function getLikesOrDislikes() 
     {
         return Likes::DBQuery()->where("idUserL1 = ".$this->idUser)->all();
     }
