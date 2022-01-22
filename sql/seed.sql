@@ -20,7 +20,7 @@ INSERT INTO `genre` (`idGenr`, `libGenr`) VALUES
 -- USER table
 INSERT INTO `user` (`idUser`, `idGenr`, `nomEUser`, `prenomUser`, `photo`, `age`, `biographie`) VALUES
 (1, 2,'Coquard', 'Leïly', '/img/coquard-leily.png', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(2, 2, 'Telusma', 'Mia', '/img/telusma-nehemia.png', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(2, 2, 'Telusma', 'Mia', '/img/telusma-mia.png', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(3, 1, 'Proust', 'Arthaud', '/img/proust-arthaud.png', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(4, 2, 'Bornerie', 'Martine', '/img/bornerie-martine.png', 45,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ,(5, 1, 'Judic', 'Gwendal', '/img/judic-gwendal.png', 22,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
