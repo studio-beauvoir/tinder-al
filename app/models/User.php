@@ -41,20 +41,18 @@ class User extends Model {
     public function getMatchedUsers() 
     {
         $matchs = $this->getMatchs();
-
         $usersMatched = [];
 
         foreach($matchs as $match) {
             $idUserMatched = 
                 $match->idUserM1 === $this->idUser ? 
                     $match->idUserM2 : $match->idUserM1;
-            
+
             array_push(
                 $usersMatched,
-                User::DBQuery()->where('idUser', $idUserMatched)->first()
+                User::DBQuery()->where("idUser = $idUserMatched")->first()
             );
         }
-
         return $usersMatched;
     }
 
