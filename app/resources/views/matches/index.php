@@ -7,13 +7,13 @@
 
 <h3>Voici tes matchs</h3>
 
-<div style="display:flex; flex-flow:row wrap; gap:2rem">
+<div class="userList">
     <?php foreach($viewData["matchedUsers"] as $i=>$user): ?>
-    <div>
-        <img height=300 width=200 src="<?=$user->photo?>?random=<?=$i?>">
-        <h3><?= $user->getFullName();?></h3>
+    <div class="userCard">
+        <img class="userCard-img" src="<?=$user->photo?>">
+        <h3 class="userCard-name"><?= $user->getFullName();?></h3>
 
-        <!-- <div style="display:flex; flex-flow:row">
+        <!-- <div class="userCard-actions">
             <form action="/comment/<?=$user->idUser?>" method="post">
                 <input type="submit" value="Ajouter un commentaire">
             </form>

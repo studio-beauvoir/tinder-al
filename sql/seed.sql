@@ -19,12 +19,12 @@ INSERT INTO `genre` (`idGenr`, `libGenr`) VALUES
 ;
 -- USER table
 INSERT INTO `user` (`idUser`, `idGenr`, `nomEUser`, `prenomUser`, `photo`, `age`, `biographie`) VALUES
-(1, 2,'Coquard', 'Leïly', 'https://thispersondoesnotexist.com/', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(2, 2, 'Telusma', 'Mia', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(3, 1, 'Proust', 'Arthaud', 'https://thispersondoesnotexist.com/', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(4, 2, 'Bornerie', 'Martine', 'https://thispersondoesnotexist.com/', 45,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(5, 1, 'Judic', 'Gwendal', 'https://thispersondoesnotexist.com/', 22,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(6, 5, 'Nago', 'Jason', 'https://thispersondoesnotexist.com/', 23,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(7, 1, 'Lust', 'Maxime', 'https://thispersondoesnotexist.com/', 19,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
-,(8, 1,'Wegera', 'Quentin', 'https://thispersondoesnotexist.com/', 19,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+(1, 2,'Coquard', 'Leïly', '/img/coquard-leily.png', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(2, 2, 'Telusma', 'Mia', '/img/telusma-nehemia.png', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(3, 1, 'Proust', 'Arthaud', '/img/proust-arthaud.png', 18,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(4, 2, 'Bornerie', 'Martine', '/img/bornerie-martine.png', 45,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(5, 1, 'Judic', 'Gwendal', '/img/judic-gwendal.png', 22,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(6, 5, 'Nago', 'Jason', '/img/nago-jason.png', 23,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(7, 1, 'Lust', 'Maxime', '/img/lust-maxime.png', 19,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
+,(8, 1,'Wegera', 'Quentin', '/img/wegera-quentin.png', 19,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita fit beatae vitae domina fortuna, quam Epicurus ait exiguam intervenire sapienti.')
 ;

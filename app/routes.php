@@ -29,3 +29,8 @@ $router->post('/dislike/:idUserTarget', fn($idUserTarget) =>LikeController::disl
 
 $router->get('/home', fn()=>HomeController::index());
 $router->get('/match/:idUserWithMatch', fn($idUserWithMatch)=>MatchController::index($idUserWithMatch));
+
+
+// $router->get('/404', function() {
+//     echo('404');
+// });

@@ -7,13 +7,13 @@
 
 <h2>Voici tes likes</h2>
 
-<div style="display:flex; flex-flow:row wrap; gap:2rem">
+<div class="userList">
     <?php foreach($viewData["likedUsers"] as $i=>$user): ?>
-    <div>
-        <img height=300 width=200 src="<?=$user->photo?>?random=<?=$i?>">
-        <h3><?= $user->getFullName();?></h3>
+    <div class="userCard">
+        <img class="userCard-img" src="<?=$user->photo?>">
+        <h3 class="userCard-name"><?= $user->getFullName();?></h3>
 
-        <div style="display:flex; flex-flow:row">
+        <div class="userCard-actions">
             <!-- requête post pour disliker -->
             <form action="/dislike/<?=$user->idUser?>" method="post">
                 <input type="submit" value="En fait j'aime po">

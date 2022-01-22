@@ -21,6 +21,10 @@ require_once __DIR__.'/app/helpers.php';
 
 // get view router etc
 
+require_once APP_ROOT.'/resources/layout/head.php';
+
 $router = new Router($_GET['url']); 
 require_once __DIR__.'./app/routes.php';
 $router->run(); 
+
+require_once APP_ROOT.'/resources/layout/foot.php';
