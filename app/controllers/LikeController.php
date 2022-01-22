@@ -86,7 +86,7 @@
                 MatchController::create($GLOBALS["user"]->idUser, $userToLike);
             }
 
-            header('Location: /home'); 
+            header('Location: /discover'); 
         }
         
 
@@ -114,7 +114,7 @@
                 ]);
             }
 
-            header('Location: /home'); 
+            header('Location: /discover'); 
         }
     
     }

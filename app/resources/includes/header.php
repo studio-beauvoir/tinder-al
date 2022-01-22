@@ -1,7 +1,7 @@
-<h1>
-    Bonjour <?=$sessionUser->getFullName()?>
-    <img width=40 src="<?=$sessionUser->photo?>">
-</h1>
+<div class="profile">
+    <img src="<?=$sessionUser->photo?>">
+    <h3>Bonjour <?=$sessionUser->getFullName()?></h3>
+</div>
 <form action="/logout" method="post">
     <input type="submit" value="Se déconnecter">
 </form>

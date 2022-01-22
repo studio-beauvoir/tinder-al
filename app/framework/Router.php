@@ -47,7 +47,7 @@ class Router {
                 return $route->call();
             }
         }
-        header('Location: /home');
+        header('Location: /');
         // throw new RouterException('No matching routes');
         die();
     }

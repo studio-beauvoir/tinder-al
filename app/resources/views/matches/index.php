@@ -1,11 +1,8 @@
 <?php require_once APP_ROOT . "/resources/includes/header.php" ?>
 
+<a href="/">Retour à l'accueil</a>
 
-<h3>
-    <a href="/home">Retour aux futurs convives</a>
-</h3>
-
-<h3>Voici tes matchs</h3>
+<h2>Voici tes matchs</h2>
 
 <div class="userList">
     <?php foreach($viewData["matchedUsers"] as $i=>$user): ?>

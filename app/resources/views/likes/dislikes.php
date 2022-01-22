@@ -1,9 +1,6 @@
 <?php require_once APP_ROOT . "/resources/includes/header.php" ?>
 
-
-<h3>
-    <a href="/home">Retour aux futurs convives</a>
-</h3>
+<a href="/">Retour à l'accueil</a>
 
 <h2>Voici tes dislikes</h2>
 
@@ -16,7 +13,7 @@
         <div class="userCard-actions">
             <!-- requête post pour disliker -->
             <form action="/like/<?=$user->idUser?>" method="post">
-                <input type="submit" value="En fait j'aime!">
+                <input type="submit" value="Non, en fait j'aime!">
             </form>
         </div>  
     </div>

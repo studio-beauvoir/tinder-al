@@ -5,6 +5,7 @@ require_once APP_ROOT.'/controllers/LikeController.php';
 require_once APP_ROOT.'/controllers/AuthController.php';
 require_once APP_ROOT.'/controllers/HomeController.php';
 require_once APP_ROOT.'/controllers/MatchController.php';
+require_once APP_ROOT.'/controllers/DiscoverController.php';
 
 //$router->get('/', fn()=>ProfileController::show() ); 
 
@@ -25,9 +26,10 @@ $router->get('/user/:id', fn($idUser) =>UserController::show($idUser));
 $router->post('/like/:idUserTarget', fn($idUserTarget) =>LikeController::like($idUserTarget));
 $router->post('/dislike/:idUserTarget', fn($idUserTarget) =>LikeController::dislike($idUserTarget));
 
+$router->get('/', fn()=>HomeController::show());
 
+$router->get('/discover', fn()=>DiscoverController::show());
 
-$router->get('/home', fn()=>HomeController::index());
 $router->get('/match/:idUserWithMatch', fn($idUserWithMatch)=>MatchController::index($idUserWithMatch));
 
 

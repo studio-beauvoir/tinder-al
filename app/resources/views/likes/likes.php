@@ -1,9 +1,6 @@
 <?php require_once APP_ROOT . "/resources/includes/header.php" ?>
 
-
-<h3>
-    <a href="/home">Retour aux futurs convives</a>
-</h3>
+<a href="/">Retour à l'accueil</a>
 
 <h2>Voici tes likes</h2>
 

@@ -1,30 +1,58 @@
 body {
-    background: #2e2e2e;
+    padding: 2rem 0;
+    background: #1a0202;
     font-family: Arial, Helvetica, sans-serif;
     color: #fe3c72;
 
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
 }
 
+h1 {
+    font-size: 3rem;
+}
+
+.profile, .loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.loginForm {
+    gap: 1rem;
+}
+.loginForm label {
+    font-size: 1.5rem;
+}
+.profile img {
+    width: 5rem;
+}
+
+h2 {
+    margin-top: 4rem;
+}
+
 .userList {
+    padding: 1rem 0;
     display:flex; 
     flex-flow:row wrap;
     gap:2rem;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     justify-content: center;
 }
 
 .userCard {
-    background: rgba(0,0,0,0.1);
+    background: rgba(252, 170, 255, 0.05);
     padding: 1rem; 
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
 }
 .userCard-img {
+    margin: auto;
     width: 12rem;
 }
 .userCard-actions {
@@ -34,9 +62,24 @@ body {
     gap: 1rem;
 }
 
-.userCard-actions input{
-    font-size: 1rem;
+input, a{
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255,255,0.2);
+    border-radius: 0.5rem;
+    color: #eeeeee;
+    background: rgba(255, 255,255,0.05);
     border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.cta-1 {
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 2rem;
 }
