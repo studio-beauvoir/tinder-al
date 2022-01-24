@@ -1,7 +1,7 @@
 <?php require_once APP_ROOT . "/resources/includes/header.php" ?>
 
 
-<h3>
+<h3 class="actions">
     <a href="/user/matches">Matchs</a>
     <a href="/user/likes">Tes likes</a>
     <a href="/user/dislikes">Tes dislikes</a>
