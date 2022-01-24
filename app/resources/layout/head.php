@@ -1,4 +1,4 @@
-<html lang="fr>
+<html lang="fr">
     <head>
         <title>Tinder 22 </title>
         <link rel="stylesheet" href="/css/master.css">
