@@ -11,12 +11,8 @@
     //connection à la base de données
     try {
         $db = new PDO($serverBD, $userBD, $passBD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-        echo 'Reussite connexion DB :';
-        exit();
     } catch (PDOException $err) {
-        echo 'Echec connexion DB : ' . $err->getMessage();
-        exit();
-        // die('Echec connexion DB : ' . $err->getMessage());
+        die('Echec connexion DB : ' . $err->getMessage());
     }
 
 ?>
