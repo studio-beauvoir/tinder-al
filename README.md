@@ -6,6 +6,7 @@ Atelier Blog'Art sur une base de données Tinder
 - Importer le fichier sql migration_(...).sql dans la bdd
 - Importer le fichier sql seed.sql dans la bdd
 - Lancer via wamp le serveur
+- Attention : L'index du site est sur /public/index.php
 
 ## Groupe
 Groupe 1 : Leïly et Arthaud
